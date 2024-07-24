@@ -1,0 +1,65 @@
+directories:
+  main: "/hpc/home/nicolo.thei/Deep/EBHI-SEG"
+  #main : "C:\\Users\\NicoT\\Downloads\\EBHI-SEG\\EBHI-SEG"
+  uNet: "./uNet"
+  tensorboardLogs: "tb_logs"
+
+# Data Parameters
+data:
+  testSize: 0.2
+  randomState: 42
+
+# Types of Cancer
+cancerTypes:
+  - "Normal"
+  - "Polyp"
+  - "Low-grade-IN"
+  - "Adenocarcinoma"
+  - "High-grade-IN"
+  - "Serrated-adenoma"
+
+idCancerTypes:
+  Normal: 1
+  Polyp: 2
+  Low-grade-IN: 3
+  Adenocarcinoma: 4
+  High-grade-IN: 5
+  Serrated-adenoma: 6
+
+# Colors for Different Cancer Types
+colors:
+  - [255, 255, 255]  # Background (White)
+  - [255, 0, 0]      # Normal (Red)
+  - [0, 255, 0]   # Polyp (Green)
+  - [0, 0, 255]   # Low-grade IN (Blue)
+  - [255, 255, 0]    # Adenocarcinoma (Yellow)
+  - [0, 255, 255]    # High-grade IN (Cyan)
+  - [0, 0, 0]     # Serrated adenoma (Black)
+
+workers: 8 #Ablation Study: Try 4, 8, 16
+
+augmentationProb: 0.5 #Ablation Study: Try 0.3, 0.5, 0.7
+
+transformBool: false #Ablation Study: Try false
+
+# Training Parameters
+training:
+  batchSize: 16 #Ablation Study: Try 32, 64, 128
+  learningRate: 0.00005 #Ablation Study: Try 0.0001
+  maxEpochs: 20 #Ablation Study: Try 10, 20, 50, 100, 200
+
+# Model Parameters
+model:
+  nChannels: 3
+  nClasses: 6
+  residual: false #Ablation Study: Try false
+  attention: false #Ablation Study: Try false
+  learnRate: 0.00005 #Ablation Study: Try 0.0001, 0.001, 0.01
+  decay: 0 #Ablation Study: Try 0.0001 or 0.001
+
+# Logging
+logging:
+  interval: "epoch"
+
+optimizer:
+  patience: 5 #Ablation Study: Try 5, 10
